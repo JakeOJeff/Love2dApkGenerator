@@ -1,4 +1,4 @@
-# Love2dExeGenerator
+# Love2dApkGenerator
 
 This Powershell program will automate some manual steps needed for APK generation on Windows.
 You need to have https://github.com/love2d/love-android setup for this to work.
