@@ -1,16 +1,12 @@
-$file = "C:\Dev\love-android\app\src\main\assets\game.love"
-$file2 = "C:\Dev\love-android\app\build\outputs\apk\embed\debug\app-embed-debug.apk"
-$file3 = "C:\Dev\love-android\app\build\outputs\apk\embed\release\app-embed-release-unsigned.apk"
 $gameSource = "D:\Documents\Programming\Lua\Games\Numbergame\*"
-$assetsPath = "C:\Dev\love-android\app\src\main\assets\game.zip"
 $loveAndroidPath = "C:\Dev\love-android"
 
-if (-not(Test-Path -Path $file -PathType Leaf)) {
+if (-not(Test-Path -Path "$loveAndroidPath\app\src\main\assets\game.love" -PathType Leaf)) {
      try {
-      Remove-Item $file2
-      Remove-Item $file3
-      Compress-Archive -Path $gameSource -DestinationPath $assetsPath
-      Rename-Item -Path $assetsPath -NewName "game.love"
+      Remove-Item "$loveAndroidPath\app\build\outputs\apk\embed\debug\app-embed-debug.apk"
+      Remove-Item "$loveAndroidPath\app\build\outputs\apk\embed\release\app-embed-release-unsigned.apk"
+      Compress-Archive -Path $gameSource -DestinationPath "$loveAndroidPath\app\src\main\assets\game.zip"
+      Rename-Item -Path "$loveAndroidPath\app\src\main\assets\game.zip" -NewName "game.love"
       Set-Location -Path $loveAndroidPath
       ./gradlew assembleEmbed
      }
@@ -19,11 +15,11 @@ if (-not(Test-Path -Path $file -PathType Leaf)) {
      }
  }
  else {
-   Remove-Item $file
-   Remove-Item $file2
-   Remove-Item $file3
-   Compress-Archive -Path $gameSource -DestinationPath $assetsPath
-   Rename-Item -Path $assetsPath -NewName "game.love"
+   Remove-Item "$loveAndroidPath\app\src\main\assets\game.love"
+   Remove-Item "$loveAndroidPath\app\build\outputs\apk\embed\debug\app-embed-debug.apk"
+   Remove-Item "$loveAndroidPath\app\build\outputs\apk\embed\release\app-embed-release-unsigned.apk"
+   Compress-Archive -Path $gameSource -DestinationPath "$loveAndroidPath\app\src\main\assets\game.zip"
+   Rename-Item -Path "$loveAndroidPath\app\src\main\assets\game.zip" -NewName "game.love"
    Set-Location -Path $loveAndroidPath
    ./gradlew assembleEmbed
  }
