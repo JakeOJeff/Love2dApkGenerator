@@ -7,7 +7,7 @@ You need to have https://github.com/love2d/love-android setup for this to work.
 Right click the file and chose run with Powershell
 
 # What it does when run
-- It will check if there is a app-embed-debug.apk and app-embed-release-unsigned.apk if that's the case it will remove it.
+- It will check if there is a app-embed-debug.apk, app-embed-release-unsigned.apk and game.love, If that's the case it will remove them.
 - It will compress your game in a zipfile.
 - It will rename the zip to game.love.
 - It will run the build command `./gradlew assembleEmbed` for building an APK file.
