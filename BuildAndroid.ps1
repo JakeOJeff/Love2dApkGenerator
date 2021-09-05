@@ -1,4 +1,4 @@
-$gameSource = "D:\Documents\Programming\Lua\Games\Numbergame\*"
+$gameSource = "D:\Documents\Programming\Lua\Test\main2\"
 $loveAndroidPath = "C:\Dev\love-android"
 
 Function Remove-GameFile {
@@ -11,8 +11,6 @@ Function Remove-GameFile {
 Remove-GameFile "$loveAndroidPath\app\src\main\assets\game.love"
 Remove-GameFile "$loveAndroidPath\app\build\outputs\apk\embed\debug\app-embed-debug.apk"
 Remove-GameFile "$loveAndroidPath\app\build\outputs\apk\embed\release\app-embed-release-unsigned.apk"
-
-Compress-Archive -Path $gameSource -DestinationPath "$loveAndroidPath\app\src\main\assets\game.zip"
-Rename-Item -Path "$loveAndroidPath\app\src\main\assets\game.zip" -NewName "game.love"
+7z a "$loveAndroidPath\app\src\main\assets\game.love" $gameSource/*
 Set-Location -Path $loveAndroidPath
 ./gradlew assembleEmbed
