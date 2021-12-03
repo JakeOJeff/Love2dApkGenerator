@@ -1,4 +1,4 @@
-$gameSource = "D:\Documents\Programming\Lua\Test\main2\"
+$gameSource = "D:\Documents\Programming\Lua\Dev\Teleprompter\"
 $loveAndroidPath = "C:\Dev\love-android"
 
 Function Remove-GameFile {
