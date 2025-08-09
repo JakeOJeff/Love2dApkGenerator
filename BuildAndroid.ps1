@@ -1,16 +1,12 @@
 $gameSource = "D:\Documents\Programming\Lua\Dev\Teleprompter\"
 $loveAndroidPath = "C:\Dev\love-android"
+$buildType = "Debug"
+$7zip = "C:\Program Files\7-Zip\7z.exe" # Path to 7z ( safer )
 
-Function Remove-GameFile {
-    param ($Path)
-    if (Test-Path -Path $Path -PathType Leaf) {
-        Remove-Item $Path
-    }
-}
+#embed record build
+Remove-Item -Path "$loveAndroidPath\app\src\main\assets\game.love" -ErrorAction SilentlyContinue
+Remove-Item -Path "$loveAndroidPath\app\build\outputs\apk\embed\debug\app-embed-record-$($buildType.ToLower()).apk"
 
-Remove-GameFile "$loveAndroidPath\app\src\main\assets\game.love"
-Remove-GameFile "$loveAndroidPath\app\build\outputs\apk\embed\debug\app-embed-debug.apk"
-Remove-GameFile "$loveAndroidPath\app\build\outputs\apk\embed\release\app-embed-release-unsigned.apk"
-7z a "$loveAndroidPath\app\src\main\assets\game.love" $gameSource/*
+& $7zip a "$loveAndroidPath\app\src\main\assets\game.love" $gameSource/*
 Set-Location -Path $loveAndroidPath
-./gradlew assembleEmbed
+./gradlew assembleEmbedRecord$buildType
